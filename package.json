@@ -30,7 +30,7 @@
     "unplugin-auto-import": "^0.6.9",
     "unplugin-vue-components": "^0.17.21",
     "vite": "^2.9.5",
-    "vite-plugin-pages": "^0.21.4",
+    "vite-plugin-pages": "^0.25.0",
     "vitest": "^0.6.3",
     "vue-tsc": "^0.32.1"
   },
