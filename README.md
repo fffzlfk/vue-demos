@@ -9,3 +9,4 @@ A series of simple apps written in Vue.js.
 - [Countdown](https://fffzlfk.github.io/vue-demos/countdown)
 - [Todo](https://fffzlfk.github.io/vue-demos/todo)
 - [Chat Window](https://fffzlfk.github.io/vue-demos/chat-window)
+- [Calculator](https://fffzlfk.github.io/vue-demos/calculator)
