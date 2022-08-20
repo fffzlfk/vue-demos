@@ -5,95 +5,135 @@ let isOperatorAdded = false
 let isStarted = false
 
 function isOperator(character: string): Boolean {
-    return ["+", "-", "×", "÷"].indexOf(character) > -1;
+  return ['+', '-', '×', '÷'].includes(character)
 }
 
 function append(character: string) {
-    if (equation.length > 9)
-        return
-    if (equation === '0' && !isOperator(character)) {
-        if (character === '.') {
-            equation += character
-            isDecimalAdded = true
-        } else {
-            equation = character
-        }
-        isStarted = true
-        return
+  if (equation.length > 9)
+    return
+  if (equation === '0' && !isOperator(character)) {
+    if (character === '.') {
+      equation += character
+      isDecimalAdded = true
     }
-    if (!isOperator(character)) {
-        if (character === '.' && isDecimalAdded)
-            return
-        if (character === '.') {
-            isDecimalAdded = true
-            isOperatorAdded = true
-        } else
-            isOperatorAdded = false
-        equation += character
+    else {
+      equation = character
     }
-    if (isOperator(character) && !isOperatorAdded) {
-        equation += character
-        isDecimalAdded = false
-        isOperatorAdded = true
+    isStarted = true
+    return
+  }
+  if (!isOperator(character)) {
+    if (character === '.' && isDecimalAdded)
+      return
+    if (character === '.') {
+      isDecimalAdded = true
+      isOperatorAdded = true
     }
+    else { isOperatorAdded = false }
+    equation += character
+  }
+  if (isOperator(character) && !isOperatorAdded) {
+    equation += character
+    isDecimalAdded = false
+    isOperatorAdded = true
+  }
 }
 
+/* eslint no-eval: 0 */
 function calculate() {
-    const result = equation.replace(new RegExp("×", "g"), "*").replace(new RegExp("÷", "g"), "/")
-    equation = parseFloat(eval(result).toFixed(9)).toString()
-    isOperatorAdded = false
-    isDecimalAdded = false
+  const result = equation.replace(/×/g, '*').replace(/÷/g, '/')
+  equation = parseFloat(eval(result).toFixed(9)).toString()
+  isOperatorAdded = false
+  isDecimalAdded = false
 }
 
 function calculateToggle() {
-    if (isOperatorAdded || !isStarted)
-        return
-    equation += "* -1"
-    calculate()
+  if (isOperatorAdded || !isStarted)
+    return
+  equation += '* -1'
+  calculate()
 }
 
 function calculatePercentage() {
-    if (isOperatorAdded || !isStarted)
-        return
-    equation += "* 0.01"
-    calculate()
+  if (isOperatorAdded || !isStarted)
+    return
+  equation += '* 0.01'
+  calculate()
 }
 
 function clear() {
-    equation = "0"
-    isDecimalAdded = false
-    isOperatorAdded = false
-    isStarted = false
+  equation = '0'
+  isDecimalAdded = false
+  isOperatorAdded = false
+  isStarted = false
 }
 </script>
 
 <template>
-    <div class="calculator">
-        <div class="result" style="grid-area: result">
-            {{ equation }}
-        </div>
-        <button style="grid-area: ac" @click="clear()">AC</button>
-        <button style="grid-area: plus-minus" @click="calculateToggle()">±</button>
-        <button style="grid-area: percent" @click="calculatePercentage()">%</button>
-        <button style="grid-area: add" @click="append('+')">+</button>
-        <button style="grid-area: subtract" @click="append('-')"> - </button>
-        <button style="grid-area: multiply" @click="append('×')">×</button>
-        <button style="grid-area: divide" @click="append('÷')">÷</button>
-        <button style="grid-area: equal" @click="calculate">=</button>
-
-        <button style="grid-area: number-1" @click="append('1')">1</button>
-        <button style="grid-area: number-2" @click="append('2')">2</button>
-        <button style="grid-area: number-3" @click="append('3')">3</button>
-        <button style="grid-area: number-4" @click="append('4')">4</button>
-        <button style="grid-area: number-5" @click="append('5')">5</button>
-        <button style="grid-area: number-6" @click="append('6')">6</button>
-        <button style="grid-area: number-7" @click="append('7')">7</button>
-        <button style="grid-area: number-8" @click="append('8')">8</button>
-        <button style="grid-area: number-9" @click="append('9')">9</button>
-        <button style="grid-area: number-0" @click="append('0')">0</button>
-
-        <button style="grid-area: dot" @click="append('.')">.</button>
+  <div class="calculator">
+    <div class="result" style="grid-area: result">
+      {{ equation }}
     </div>
+    <button style="grid-area: ac" @click="clear()">
+      AC
+    </button>
+    <button style="grid-area: plus-minus" @click="calculateToggle()">
+      ±
+    </button>
+    <button style="grid-area: percent" @click="calculatePercentage()">
+      %
+    </button>
+    <button style="grid-area: add" @click="append('+')">
+      +
+    </button>
+    <button style="grid-area: subtract" @click="append('-')">
+      -
+    </button>
+    <button style="grid-area: multiply" @click="append('×')">
+      ×
+    </button>
+    <button style="grid-area: divide" @click="append('÷')">
+      ÷
+    </button>
+    <button style="grid-area: equal" @click="calculate">
+      =
+    </button>
+
+    <button style="grid-area: number-1" @click="append('1')">
+      1
+    </button>
+    <button style="grid-area: number-2" @click="append('2')">
+      2
+    </button>
+    <button style="grid-area: number-3" @click="append('3')">
+      3
+    </button>
+    <button style="grid-area: number-4" @click="append('4')">
+      4
+    </button>
+    <button style="grid-area: number-5" @click="append('5')">
+      5
+    </button>
+    <button style="grid-area: number-6" @click="append('6')">
+      6
+    </button>
+    <button style="grid-area: number-7" @click="append('7')">
+      7
+    </button>
+    <button style="grid-area: number-8" @click="append('8')">
+      8
+    </button>
+    <button style="grid-area: number-9" @click="append('9')">
+      9
+    </button>
+    <button style="grid-area: number-0" @click="append('0')">
+      0
+    </button>
+
+    <button style="grid-area: dot" @click="append('.')">
+      .
+    </button>
+  </div>
 </template>
 
 <style>

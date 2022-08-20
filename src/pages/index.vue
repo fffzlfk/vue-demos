@@ -23,8 +23,8 @@ const projects = [
   },
   {
     name: 'Calculator',
-    url: `${BASE_URL}calculator`
-  }
+    url: `${BASE_URL}calculator`,
+  },
 ]
 </script>
 
